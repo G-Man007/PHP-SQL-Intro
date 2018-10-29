@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <title>View the user posts</title>
+    <link type="text/css" rel="stylesheet" href= "style.css" >
+  </head>
+  <body>
+    <form action="ViewUserPosts.php" method="post">
+      <!--PHP fills the drop down menu-->
+        <?php
+        $mysqli = new mysqli("mysql.eecs.ku.edu", "g913s551", "sahCu4Ae", "g913s551");
+        $grab = mysqli_query($mysqli, "SELECT * FROM Users");
+
+        echo '<select name="options"><option>';
+        echo "Please think</option>";
+
+        while($check = mysqli_fetch_array($grab)){
+          echo '<option value = "' . $check['user_id'] . '">' . $check['user_id'] . '</option>';
+        }echo '</select>'
+      ?>
+      <input type="submit" value="Show Posts">
+    </form>
+  </body>
+</html>

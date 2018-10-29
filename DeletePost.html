@@ -1,0 +1,47 @@
+authors<html>
+  <head>
+    <title>Delete Post</title>
+    <link type="text/css" rel="stylesheet" href= "style.css" />
+  </head>
+  <body>
+<form action="DeletePost.php" method="post">
+             <table class="table table-striped" >
+                 <tr>
+                     <th> Post ID </th>
+                     <th> Content </th>
+                     <th> Author </th>
+                     <th> Delete </th>
+                 </tr>
+<?php
+    $mysqli = new mysqli("mysql.eecs.ku.edu", "g913s551", "sahCu4Ae", "g913s551");
+      /* check connection */
+    if ($mysqli->connect_errno) {
+        printf("Connection failed: %s\n", $mysqli->connect_error);
+        exit();
+      }
+        $authors = "SELECT * FROM Posts";
+        if ($final = $mysqli->query($authors)) {
+          //while collects all authors information
+          while ($formatPosts = $final->fetch_assoc()) {
+              $author_id = $formatPosts['author_id'];
+              $content = $formatPosts['content'];
+              $post_id = $formatPosts['post_id'];
+              ?>
+            <tr>
+                <td> <?php echo $post_id; ?> </td>
+                <td> <?php echo $content; ?> </td>
+                <td> <?php echo $author_id; ?> </td>
+              <td> <input type="checkbox" name="removal_array[]" value=" <?php echo $post_id; ?>"  > </td>
+                      </tr>
+            <?php
+                  }
+                  /* free final set */
+                  $final->free();
+              }
+              ?>
+     </table>
+
+     <input type="submit" name= "submition" value="Delete Now">
+         </form>
+       </body>
+     </html>
