@@ -18,12 +18,12 @@ if(mysqli_num_rows($check) == 0){
   echo "User '" . $userName . "' is not registered in our database";
   exit(0);
 }
-else if($text == 'null' || $user == 'null' || ){
+else if($text == 'null' || $userName == 'null' || ){
   echo "One or more fields are empty";
 }
 else{
   $query = mysqli_query($mysqli, $insert);
-  echo "User '" . $user . "' post was added";
+  echo "User '" . $userName . "' post was added";
 }
 
 /* close connection */

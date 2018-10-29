@@ -7,10 +7,10 @@
      exit();
  }
 
- echo "<head><title>View User Posts</title>";
+ echo "<head><title>View Posts</title>";
  echo "<link type='text/css' rel='stylesheet' href='style.css'></head>";
  /*makes sure user has posted before*/
- $thePost = mysqli_query($mysqli, "SELECT (content) FROM Posts WHERE author_id='$choice'");
+ $userPost = mysqli_query($mysqli, "SELECT (content) FROM Posts WHERE author_id='$choice'");
  if(mysqli_num_rows($thePost) == 0){
    echo "No posts have been made by this user at this time";
  }
@@ -18,7 +18,7 @@
  else{
    echo "<table>";
    echo "<tr>" . "<th>" . $choice . "</th>" . "</tr>";
-   while($thinking = mysqli_fetch_array($thePost)){
+   while($thinking = mysqli_fetch_array($userPost)){
     echo "<tr>";
       echo "<td>";
         echo $thinking['content'];
